@@ -33,7 +33,7 @@ const run = async () => {
         status: 'new'
     }, {
         user: tugolbai,
-        title: '',
+        title: 'Do homework',
         status: 'complete'
     });
 
