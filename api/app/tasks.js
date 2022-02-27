@@ -53,9 +53,7 @@ router.put('/:id', async (req, res, next) => {
             taskData.user = req.body.user;
         }
 
-        const task = Task.updateOne({_id : req.params.id}, {$set: {taskData}});
-
-        await task.save();
+        await Task.updateOne({_id : req.params.id}, {$set: {taskData}});
 
         return res.send({message: 'Successfully modified'});
     } catch (e) {
@@ -65,8 +63,7 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const task = Task.deleteOne({_id : req.params.id});
-        await task.save();
+        await Task.deleteOne({_id : req.params.id});
 
         return res.send({message: 'Deleted successfully'});
     } catch (e) {

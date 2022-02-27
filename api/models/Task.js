@@ -12,6 +12,7 @@ const TaskSchema = new Schema({
     },
     status: {
         type: String,
+        required: true
     }
 });
 
