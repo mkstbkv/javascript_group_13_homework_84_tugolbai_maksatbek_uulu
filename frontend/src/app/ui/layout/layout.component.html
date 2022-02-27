@@ -1,0 +1,11 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <mat-toolbar color="warn">
+      <a routerLink="/">ToDo List</a>
+      <a mat-raised-button routerLink="/new-task" class="addClass">+Add Task</a>
+    </mat-toolbar>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
