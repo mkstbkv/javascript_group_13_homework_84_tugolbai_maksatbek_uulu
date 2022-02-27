@@ -10,7 +10,7 @@ export interface UserData {
   username: string;
 }
 
-export interface ApiArtistData {
+export interface ApiUserData {
   _id: string,
   username: string,
 }
