@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class TasksService {
   constructor(private http: HttpClient) { }
 
-  getAlbums() {
+  getTasks() {
     return this.http.get<ApiTaskData[]>(environment.apiUrl + '/tasks').pipe(
       map(response => {
         return response.map(albumData => {

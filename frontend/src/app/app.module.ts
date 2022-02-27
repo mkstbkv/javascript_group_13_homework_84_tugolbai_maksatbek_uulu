@@ -18,6 +18,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { NewTaskComponent } from './pages/new-task/new-task.component';
+import { usersReducer } from './store/users.reducer';
+import { tasksReducer } from './store/tasks.reducer';
+import { UsersEffects } from './store/users.effects';
+import { TasksEffects } from './store/tasks.effects';
 
 @NgModule({
   declarations: [
@@ -33,8 +37,8 @@ import { NewTaskComponent } from './pages/new-task/new-task.component';
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({users: usersReducer, tasks: tasksReducer}, {}),
+    EffectsModule.forRoot([UsersEffects, TasksEffects]),
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
