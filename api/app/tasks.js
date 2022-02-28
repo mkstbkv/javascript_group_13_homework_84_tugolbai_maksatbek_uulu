@@ -39,7 +39,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        if (req.body.user) {
+        if (req.body.title) {
             return res.status(400).send({message: 'Only "status" and "user" fields can be edited'});
         }
 
@@ -65,7 +65,8 @@ router.delete('/:id', async (req, res, next) => {
     try {
         await Task.deleteOne({_id : req.params.id});
 
-        return res.send({message: 'Deleted successfully'});
+        const tasks = await Task.find().populate("user", "username");
+        return res.send(tasks);
     } catch (e) {
         next(e);
     }

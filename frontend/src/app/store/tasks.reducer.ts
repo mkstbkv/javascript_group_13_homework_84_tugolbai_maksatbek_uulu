@@ -55,7 +55,11 @@ export const tasksReducer = createReducer(
   })),
 
   on(deleteTaskRequest, state => ({...state, deleteLoading: true})),
-  on(deleteTaskSuccess, state => ({...state, deleteLoading: false})),
+  on(deleteTaskSuccess, (state, {tasks}) => ({
+    ...state,
+    fetchLoading: false,
+    tasks
+  })),
   on(deleteTaskFailure, (state, {error}) => ({
     ...state,
     deleteLoading: false,

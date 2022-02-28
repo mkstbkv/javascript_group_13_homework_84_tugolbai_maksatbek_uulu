@@ -49,7 +49,7 @@ export class TasksEffects {
   deleteTask = createEffect(() => this.actions.pipe(
     ofType(deleteTaskRequest),
     mergeMap((task) => this.tasksService.deleteTask(task.id).pipe(
-      map(() => deleteTaskSuccess()),
+      map(tasks => deleteTaskSuccess({tasks})),
       tap(() => this.router.navigate(['/'])),
       catchError(() => of(deleteTaskFailure({error: 'Wrong data'})))
     ))

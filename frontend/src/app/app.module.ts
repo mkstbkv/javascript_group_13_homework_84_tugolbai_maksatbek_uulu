@@ -22,6 +22,10 @@ import { usersReducer } from './store/users.reducer';
 import { tasksReducer } from './store/tasks.reducer';
 import { UsersEffects } from './store/users.effects';
 import { TasksEffects } from './store/tasks.effects';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,11 @@ import { TasksEffects } from './store/tasks.effects';
     MatButtonModule,
     LayoutModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

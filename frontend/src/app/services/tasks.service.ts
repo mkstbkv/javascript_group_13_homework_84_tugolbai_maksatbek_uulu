@@ -13,12 +13,12 @@ export class TasksService {
   getTasks() {
     return this.http.get<ApiTaskData[]>(environment.apiUrl + '/tasks').pipe(
       map(response => {
-        return response.map(albumData => {
+        return response.map(taskData => {
           return new Task(
-            albumData._id,
-            albumData.user,
-            albumData.title,
-            albumData.status,
+            taskData._id,
+            taskData.user,
+            taskData.title,
+            taskData.status,
           );
         });
       })
@@ -26,22 +26,25 @@ export class TasksService {
   }
 
   createTask(taskData: TaskData) {
-    const formData = new FormData();
-
-    Object.keys(taskData).forEach(key => {
-      if (taskData[key] !== null) {
-        formData.append(key, taskData[key]);
-      }
-    });
-
-    return this.http.post(environment.apiUrl + '/tasks', formData);
+    return this.http.post(environment.apiUrl + '/tasks', taskData);
   }
 
   changeTask(id: string, taskData: TaskData) {
-    return this.http.post(environment.apiUrl + '/tasks/' + id, taskData);
+    return this.http.put(environment.apiUrl + '/tasks/' + id, taskData);
   }
 
   deleteTask(id: string) {
-    return this.http.delete(environment.apiUrl + '/tasks/' + id);
+    return this.http.delete<ApiTaskData[]>(environment.apiUrl + '/tasks/' + id).pipe(
+      map(response => {
+        return response.map(taskData => {
+          return new Task(
+            taskData._id,
+            taskData.user,
+            taskData.title,
+            taskData.status,
+          );
+        });
+      })
+    );
   }
 }

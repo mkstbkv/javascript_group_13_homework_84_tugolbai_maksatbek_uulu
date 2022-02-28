@@ -1,0 +1,53 @@
+<div class="error" *ngIf="error | async">
+  {{ error | async }}
+</div>
+
+<mat-progress-spinner
+  *ngIf="(loading | async) else tasksArea"
+  mode="indeterminate"
+></mat-progress-spinner>
+
+<ng-template #tasksArea>
+  <div
+    *ngFor="let task of tasks | async"
+    style="margin-bottom: 40px"
+  >
+    <mat-card fxLayout="row wrap" fxLayoutAlign="space-between flex-start">
+      <mat-card-title><strong>Task: </strong>{{ task.title }}</mat-card-title>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <mat-select
+          >
+            <mat-option value="">N/A</mat-option>
+            <mat-option
+              *ngFor="let user of users | async"
+              [value]="user.username"
+            >
+              {{ user.username }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select
+            [value]="task.status"
+          >
+            <mat-option value="new" >New</mat-option>
+            <mat-option value="in_progress">In progress</mat-option>
+            <mat-option value="complete">Complete</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+      <mat-card-actions align="end">
+        <button mat-fab color="warn" (click)="onDelete(task.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ng-template>
+

@@ -47,7 +47,9 @@ export const deleteTaskRequest = createAction(
 );
 
 export const deleteTaskSuccess = createAction(
-  '[Tasks] Delete Success'
+  '[Tasks] Delete Success',
+  props<{tasks: Task[]}>()
+
 );
 
 export const deleteTaskFailure = createAction(
