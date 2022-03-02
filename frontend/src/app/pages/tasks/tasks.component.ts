@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Task } from '../../models/task.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
-import { deleteTaskRequest, fetchTasksRequest } from '../../store/tasks.actions';
+import { changeTaskRequest, deleteTaskRequest, fetchTasksRequest } from '../../store/tasks.actions';
 import { User } from '../../models/user.model';
 import { fetchUsersRequest } from '../../store/users.actions';
 
@@ -30,10 +30,24 @@ export class TasksComponent implements OnInit {
     this.store.dispatch(fetchUsersRequest());
   }
 
-
-
   onDelete(id: string) {
     this.store.dispatch(deleteTaskRequest({id: id}));
     this.tasks =this.store.select(state => state.tasks.tasks);
+  }
+
+  onChangeUser(id: string, e: string) {
+    const taskData = {
+      user: e,
+    };
+
+    this.store.dispatch(changeTaskRequest({id: id, taskData: taskData}));
+  }
+
+  onChangeStatus(id: string, e: string) {
+    const taskData = {
+      status: e,
+    };
+
+    this.store.dispatch(changeTaskRequest({id: id, taskData: taskData}));
   }
 }

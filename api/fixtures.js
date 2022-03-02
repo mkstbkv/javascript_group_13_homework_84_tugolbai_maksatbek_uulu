@@ -29,6 +29,7 @@ const run = async () => {
         title: 'Go to car repairs',
         status: 'in_progress'
     },{
+        user: null,
         title: 'Create a list of tasks',
         status: 'new'
     }, {

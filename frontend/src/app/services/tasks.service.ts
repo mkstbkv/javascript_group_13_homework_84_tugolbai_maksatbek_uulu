@@ -29,7 +29,7 @@ export class TasksService {
     return this.http.post(environment.apiUrl + '/tasks', taskData);
   }
 
-  changeTask(id: string, taskData: TaskData) {
+  changeTask(id: string, taskData: any) {
     return this.http.put(environment.apiUrl + '/tasks/' + id, taskData);
   }
 

@@ -29,7 +29,7 @@ export const createTaskFailure = createAction(
 
 export const changeTaskRequest = createAction(
   '[Tasks] Change Request',
-  props<{id: string, taskData: TaskData}>()
+  props<{id: string, taskData: any}>()
 );
 
 export const changeTaskSuccess = createAction(

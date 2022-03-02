@@ -43,17 +43,17 @@ router.put('/:id', async (req, res, next) => {
             return res.status(400).send({message: 'Only "status" and "user" fields can be edited'});
         }
 
-        const taskData = {};
+        const task = await Task.findOne({_id: req.params.id});
 
         if (req.body.status) {
-            taskData.status = req.body.status;
+            task.status = req.body.status;
+            task.save();
         }
 
         if (req.body.user) {
-            taskData.user = req.body.user;
+            task.user = req.body.user;
+            task.save();
         }
-
-        await Task.updateOne({_id : req.params.id}, {$set: {taskData}});
 
         return res.send({message: 'Successfully modified'});
     } catch (e) {
